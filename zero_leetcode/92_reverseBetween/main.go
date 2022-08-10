@@ -57,19 +57,3 @@ func reverseBetween(head *ListNode, left int, right int) *ListNode {
 
 	return dummy.Next
 }
-
-func helpLog(head *ListNode) func() {
-	helpF(head, "start")
-	return func() {
-		helpF(head, "exit")
-	}
-}
-
-func helpF(head *ListNode, str string) {
-	fmt.Printf("[%s]", str)
-	for head != nil {
-		fmt.Printf("%v->", head.Val)
-		head = head.Next
-	}
-	fmt.Println("Nil")
-}
