@@ -11,6 +11,16 @@ func reverseList(head *ListNode) *ListNode {
 	return dummy
 }
 
+func reverseList2(head *ListNode) *ListNode {
+	if head == nil || head.Next == nil {
+		return head
+	}
+	last := reverseList2(head.Next)
+	head.Next.Next = head
+	head.Next = nil
+	return last
+}
+
 //func reverseList(head *ListNode) *ListNode {
 //	log.Printf("reverseList before ,head=%v %v", head.Val, head.Next)
 //	if head.Next == nil {
