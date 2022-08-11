@@ -1,9 +1,5 @@
 package main
 
-import (
-	"fmt"
-)
-
 /**
  * Definition for singly-linked list.
  * type ListNode struct {
@@ -32,26 +28,13 @@ func reverseBetween(head *ListNode, left int, right int) *ListNode {
 	helpF(pre, "pre->")
 	//2. reverse right-left list
 	for i := left; i < right; i++ {
-		fmt.Println("========")
-		helpF(dummy, "start->")
-
-		helpF(head.Next, "head.Next")
 		next := head.Next
-		helpF(next, "next")
 
-		helpF(next.Next, "next.Next")
 		head.Next = next.Next
-		helpF(head.Next, "head.Next")
 
-		helpF(pre.Next, "pre.Next")
 		next.Next = pre.Next
-		helpF(next.Next, "next.Next")
 
-		helpF(next, "next")
 		pre.Next = next
-		helpF(pre.Next, "pre.Next")
-
-		helpF(dummy, "end->")
 	}
 	//3. return
 
