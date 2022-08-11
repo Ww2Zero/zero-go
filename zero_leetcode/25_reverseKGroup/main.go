@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 /**
  * Definition for singly-linked list.
  * type ListNode struct {
@@ -34,38 +32,18 @@ func reverseKGroup(head *ListNode, k int) *ListNode {
 	return dummy
 }
 
-func reverseBetween2(left, right *ListNode) *ListNode {
-	dummy := &ListNode{Val: -1}
-	dummy.Next = left
-	pre := dummy
-
-	for pre != right {
-		next := pre.Next
-
-		pre.Next = next.Next
-
-		next.Next = pre.Next
-
-		pre = next.Next
-	}
-	return dummy.Next
-}
 func reverseBetween(left, right *ListNode) *ListNode {
 	var dummy *ListNode
 	helpF(left, "left")
 	helpF(right, "right")
 
 	for left != right {
-		fmt.Println("===========")
 		// 1. 记录left的下一个节点next
 		next := left.Next
-		helpF(next, "next")
 		// 2. 修改原本的left.Next节点，
 		//  当dummy为null时，则dummy为
-		helpF(dummy, "dummy")
 		left.Next = dummy
-		helpF(left, "left")
-		helpF(left.Next, "left.Next")
+
 		dummy = left
 		left = next
 	}

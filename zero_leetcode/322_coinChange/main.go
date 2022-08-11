@@ -9,7 +9,7 @@ import (
 // 输入 [1,2,5] 11
 // 输出 3
 func coinChangeBrute(coins []int, amount int) (res int) {
-	helpN(amount, ">amount:%v-res:%v", amount, res)
+	helpN(amount, "amount=%v-res=%v", amount, res)
 	defer func() {
 		helpN(amount, " < amount:%v-res:%v", amount, res)
 	}()
@@ -48,10 +48,6 @@ func coinChange(coins []int, amount int) (res int) {
 	return coinChangeMemo(coins, amount, memo)
 }
 func coinChangeMemo(coins []int, amount int, memo []int) (res int) {
-	helpN(amount, " > amount:%v-res:%v", amount, res)
-	defer func() {
-		helpN(amount, " < amount:%v-res:%v", amount, res)
-	}()
 	if amount == 0 {
 		res = 0
 		return
@@ -67,11 +63,15 @@ func coinChangeMemo(coins []int, amount int, memo []int) (res int) {
 	res = math.MaxInt
 	for i := 0; i < len(coins); i++ {
 		cur := coins[i]
+		helpP2(amount, amount-cur, "amount=%v\\nres=%v\\ntarget=%v", amount, res, amount-cur)
 		subProblem := coinChangeMemo(coins, amount-cur, memo)
+
 		if subProblem == -1 {
+			helpP2(amount-cur, amount, "amount=%v\\nres=%v\\ntarget=%v", amount, res, amount-cur)
 			continue
 		}
 		res = min(res, subProblem+1)
+		helpP2(amount-cur, amount, "amount=%v\\nres=%v\\ntarget=%v", amount, res, amount-cur)
 	}
 	if res == math.MaxInt {
 		memo[amount] = -1
