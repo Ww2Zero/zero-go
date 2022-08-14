@@ -18,6 +18,8 @@ type TreeNode struct {
 }
 
 // buildTree 根据tree前序遍历和中序遍历构建tree
+// todo：使用中序遍历和后序遍历构建tree
+//       使用层序遍历构建tree
 func buildTree(preorder []int, inorder []int) *TreeNode {
 	// 用map存储value -> index  的数据，避免在inorder中查找rootNode时候需要遍历
 	valToIndexMap := make(map[int]int)
