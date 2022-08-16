@@ -16,6 +16,9 @@ func rob(nums []int) int {
 		memo1[i] = -1
 		memo2[i] = -1
 	}
+	// 首位相连，
+	// 1，选择从0开始，之后不能选择l-1。只能是l-2了
+	// 2。选择从1开始，则可以选择到最后一个节点。l-1
 	return max(robHelper(nums, 0, l-2, memo1), robHelper(nums, 1, l-1, memo2))
 }
 
@@ -27,8 +30,12 @@ func robHelper(nums []int, start, end int, memo []int) int {
 	if memo[start] != -1 {
 		return memo[start]
 	}
+	// memo表示memo[start]的最大值
+	// 当前选择了当前节点之后，不能选择start+1的节点，所以最大的价值为当前节点的价值+start+2的最大价值
 	memo[start] = max(
-		robHelper(nums, start+2, end, memo)+nums[start],
+		// 选择当前节点时的最大价值，即当前节点【start】 + 【start+2】
+		nums[start]+robHelper(nums, start+2, end, memo),
+		// 不选择当前节点，即选择节点【start+1】
 		robHelper(nums, start+1, end, memo),
 	)
 	return memo[start]
