@@ -6,6 +6,13 @@ import "fmt"
 
 // [7, 1, 5, 3, 6, 4]
 // ==> 7
+//[day][      空仓],[      持股]
+//[  0]          0,        -7,
+//[  1]          0,        -1,
+//[  2]          4,        -1,
+//[  3]          4,         1,
+//[  4]          7,         1,
+//[  5]          7,         3,
 func maxProfit(prices []int) int {
 	// var dp [][][]int
 	// dp[n][k][0/1]
@@ -38,10 +45,12 @@ func maxProfit(prices []int) int {
 	return dp[sz-1][0]
 }
 func printArr(dp [][2]int) {
+	fmt.Printf("[%3v][%8v],[%8v]\n", "day", "空仓", "持股")
 	for i := 0; i < len(dp); i++ {
+		fmt.Printf("[%3v] ", i)
 		arr := dp[i]
 		for j := 0; j < len(arr); j++ {
-			fmt.Printf("%v,", arr[j])
+			fmt.Printf("%10v,", arr[j])
 		}
 		fmt.Println()
 	}

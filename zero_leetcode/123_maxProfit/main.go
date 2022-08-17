@@ -1,5 +1,7 @@
 package _23_maxProfit
 
+import "fmt"
+
 //leetcode submit region begin(Prohibit modification and deletion)
 func maxProfit(prices []int) int {
 	sz := len(prices)
@@ -19,6 +21,7 @@ func maxProfit(prices []int) int {
 			dp[i][k][1] = max(dp[i-1][k][1], dp[i-1][k-1][0]-prices[i])
 		}
 	}
+	printArr(dp)
 	return dp[sz-1][2][0]
 }
 func max(a, b int) int {
@@ -26,6 +29,21 @@ func max(a, b int) int {
 		return a
 	}
 	return b
+}
+
+func printArr(dp [][3][2]int) {
+
+}
+func printArr2(dp [][2]int) {
+	fmt.Printf("[%3v][%8v],[%8v]\n", "day", "空仓", "持股")
+	for i := 0; i < len(dp); i++ {
+		fmt.Printf("[%3v] ", i)
+		arr := dp[i]
+		for j := 0; j < len(arr); j++ {
+			fmt.Printf("%10v,", arr[j])
+		}
+		fmt.Println()
+	}
 }
 
 //leetcode submit region end(Prohibit modification and deletion)
