@@ -1,6 +1,9 @@
 package _07_canFinish
 
 //leetcode submit region begin(Prohibit modification and deletion)
+
+// https://leetcode.cn/problems/course-schedule/solution/bao-mu-shi-ti-jie-shou-ba-shou-da-tong-tuo-bu-pai-/
+
 func canFinish(numCourses int, prerequisites [][]int) bool {
 	// 1.记录课程入度table
 	inDegreeTable := make(map[int]int, 0)
