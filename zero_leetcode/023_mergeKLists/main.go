@@ -1,11 +1,12 @@
 package _23_mergeKLists
 
-type ListNode struct {
-	Val  int
-	Next *ListNode
-}
+import "container/heap"
 
 func mergeKLists(lists []*ListNode) *ListNode {
+	//return mergeKListsByDivide(lists)
+	return mergeKListsByMinHeap(lists)
+}
+func mergeKListsByDivide(lists []*ListNode) *ListNode {
 	if len(lists) == 0 {
 		return nil
 	}
@@ -15,6 +16,30 @@ func mergeKLists(lists []*ListNode) *ListNode {
 		res = mergeTwoLists(res, cur)
 	}
 	return res
+}
+
+func mergeKListsByMinHeap(lists []*ListNode) *ListNode {
+	k := len(lists)
+	h := new(minHeap)
+	for i := 0; i < k; i++ {
+		if lists[i] != nil {
+			heap.Push(h, lists[i])
+		}
+	}
+
+	dummyHead := new(ListNode)
+	pre := dummyHead
+	for h.Len() > 0 {
+		tmp := heap.Pop(h).(*ListNode)
+		if tmp.Next != nil {
+			heap.Push(h, tmp.Next)
+		}
+
+		pre.Next = tmp
+		pre = pre.Next
+	}
+
+	return dummyHead.Next
 }
 
 func mergeTwoLists(l1, l2 *ListNode) *ListNode {
