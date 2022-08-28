@@ -7,6 +7,8 @@ type TreeNode struct {
 	Right *TreeNode
 }
 
+// lowestCommonAncestor 236. 最近公共祖先
+// 普通二叉树的最近公共祖先问题
 func lowestCommonAncestor(root, p, q *TreeNode) *TreeNode {
 	if root == nil {
 		return nil
