@@ -43,4 +43,26 @@ func min(a, b int) int {
 	return a
 }
 
+// trapByStack 单调栈
+func trapByStack(height []int) int {
+	sz := len(height)
+	res := 0
+	stack := make([]int, sz)
+	stack = append(stack, 0)
+
+	for i := 1; i < sz; i++ {
+		for len(stack) > 0 && height[i] > height[stack[len(stack)-1]] {
+			mid := stack[len(stack)-1]
+			stack = stack[:len(stack)-1]
+			if len(stack) != 0 {
+				h := min(height[stack[len(stack)-1]], height[i]) - height[mid]
+				w := i - stack[len(stack)-1] - 1
+				res += h * w
+			}
+		}
+		stack = append(stack, i)
+	}
+	return res
+}
+
 //leetcode submit region end(Prohibit modification and deletion)
