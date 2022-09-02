@@ -1,0 +1,26 @@
+@startuml
+skinparam ParticipantPadding 20
+skinparam BoxPadding 100
+participant Client as "客户端" #red
+participant Server as "服务端" #lightblue
+
+== tcp/ip ==
+group handshake
+Client->Server: hello
+note left  Client:
+note right Server:
+Server->Client: ack
+end group
+
+== tcp/ip2 ==
+
+hnote over Server : bind()
+hnote over Server : listen()
+hnote over Client : connect()
+Client->(90)Server ++ : syn
+Server->(90)Client --++: syn+ack
+Client->(90)Server --++: ack
+hnote over Server : ack()
+Server->(90)Client --: ack
+
+@enduml
