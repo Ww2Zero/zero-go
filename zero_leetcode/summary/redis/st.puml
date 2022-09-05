@@ -1,0 +1,20 @@
+@startyaml
+
+redisDB:
+    dict *dict:
+        dictht ht[2]:
+            - ht[0]:
+                dictEntry **table:
+                    dictEntry [3]:
+                        dictEntry*:
+                            dictEntry:
+                                   key:
+                                   value:
+                        dictEntry*:
+                            dictEntry:
+                                key:
+                                value:
+                        dictEntry*: null
+            - ht[1]:
+                dictEntry **table: null
+@endyaml
